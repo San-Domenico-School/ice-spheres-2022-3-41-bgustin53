@@ -52,7 +52,6 @@ public class PlayerController : MonoBehaviour
 
     private void SetMoveDirection(Vector2 value)
     {
-        Debug.Log(moveDirection);
         moveDirection = value.y;
     }
 
