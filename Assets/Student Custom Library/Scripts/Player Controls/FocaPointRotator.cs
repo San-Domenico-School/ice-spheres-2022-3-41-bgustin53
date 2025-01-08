@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class FocaPointRotator : MonoBehaviour
 {
+    [SerializeField] private float rotationSpeed;
+    private PlayerInputActions InputAction;
+    private float moveDirection;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         
     }
@@ -14,5 +18,20 @@ public class FocaPointRotator : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
+    private void CameraRotate(Vector2 value)
+    {
+
     }
 }

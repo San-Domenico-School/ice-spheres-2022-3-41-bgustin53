@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 544997373}
   - component: {fileID: 544997372}
   - component: {fileID: 544997371}
+  - component: {fileID: 544997376}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -486,6 +487,23 @@ Transform:
   - {fileID: 86017286}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &544997376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544997370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ef22771fe3c490dab864f761e6ea8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRB: {fileID: 0}
+  playerCollider: {fileID: 0}
+  powerUpIndicator: {fileID: 0}
+  focalpoint: {fileID: 0}
+  moveForceMagnitude: 0
 --- !u!1 &979808665
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 979808666}
+  - component: {fileID: 979808667}
   m_Layer: 0
   m_Name: Focal Point
   m_TagString: Untagged
@@ -518,6 +537,19 @@ Transform:
   - {fileID: 1211419928}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &979808667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979808665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997ac3c4a63bd4914a4447aec789db09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 0
 --- !u!1 &1211016355
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,6 +918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1867726502}
+  - component: {fileID: 1867726503}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -908,6 +941,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1867726503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867726501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4dd62360c8b4ffd8c4b81a243d1408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScale: {x: 0, y: 0, z: 0}
+  playerMass: 0
+  playerDrag: 0
+  playerMoveForce: 0
+  playerRepelForce: 0
+  playerBounce: 0
+  waypoints: []
+  debugSpawnWaves: 0
+  debugSpawnPortal: 0
+  debugSpawnPowerUp: 0
+  debugPowerUpRepel: 0
 --- !u!1001 &7305732181041295649
 PrefabInstance:
   m_ObjectHideFlags: 0

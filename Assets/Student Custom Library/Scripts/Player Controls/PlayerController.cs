@@ -27,5 +27,8 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision) { }
     private void OnTriggerEnter(Collider other) { }
     private void OnTriggerExit(Collider other) { }
-    private IEnumerator PowerUpCooldown(float cooldown) { }
+    private IEnumerator PowerUpCooldown(float cooldown)
+    {
+        yield return new WaitForSeconds(cooldown);
+    }
 }
