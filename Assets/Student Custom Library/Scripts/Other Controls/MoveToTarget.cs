@@ -12,17 +12,18 @@ public class MoveToTarget : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        target = GameObject.Find("Player");
+        targetRB = target.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        MoveTowardsTarget();
     }
 
     private void MoveTowardsTarget()
     {
-
+        navMeshAgent.SetDestination(targetRB.transform.position);
     }
 }
