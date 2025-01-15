@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class IceSphereController : MonoBehaviour
 {
-    [SerializeField] private float startDelay;
-    [SerializeField] private float reductionEachRepeat;
-    [SerializeField] private float minimumVolume;
+    private float startDelay;
+    private float reductionEachRepeat;
+    private float minimumVolume;
 
     private Rigidbody iceRB;
     private ParticleSystem iceVFX;
@@ -15,13 +15,28 @@ public class IceSphereController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager.Instance.debugSpawnWaves)
+        {
+            reductionEachRepeat = .5f;
+        }
 
+        startDelay = 3;
+        reductionEachRepeat = 0.975f;
+        minimumVolume = 0.2f;
+
+        iceRB = GetComponent<Rigidbody>();
+        iceVFX = GetComponent<ParticleSystem>();
+
+        RandomizeSizeAndMass();
+        InvokeRepeating("Melt", startDelay, 0.4f);
     }
 
     // Update is called once per frame
     private void RandomizeSizeAndMass()
     {
-
+        float sizeReduction = Random.Range(0.5f, 1.0f);
+        transform.localScale *= sizeReduction;
+        iceRB.mass *= sizeReduction;
     }
 
     private void Dissolution()
@@ -32,6 +47,6 @@ public class IceSphereController : MonoBehaviour
 
     private void Melt()
     {
-
+        Debug.Log(transform.localScale);
     }
 }
