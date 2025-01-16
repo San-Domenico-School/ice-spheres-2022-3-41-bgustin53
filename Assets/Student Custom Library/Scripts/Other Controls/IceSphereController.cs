@@ -41,12 +41,19 @@ public class IceSphereController : MonoBehaviour
 
     private void Dissolution()
     {
-
+        float volume = 4 / 3 * Mathf.PI * Mathf.Pow(transform.localScale.x, 2);
+        if(volume < minimumVolume  && FindObjectsOfType<IceSphereController>().Length > 1)
+        {
+            iceVFX.Stop();
+            Destroy(gameObject);
+        }
 
     }
 
     private void Melt()
     {
-        Debug.Log(transform.localScale);
+        transform.localScale *= reductionEachRepeat;
+        iceRB.mass *= reductionEachRepeat;
+        Dissolution();
     }
 }
