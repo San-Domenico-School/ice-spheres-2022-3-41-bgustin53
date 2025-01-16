@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
         inputAction.Enable();
         inputAction.Player.Movement.performed += ctx => SetMoveDirection(ctx.ReadValue<Vector2>());
         inputAction.Player.Movement.canceled += ctx => moveDirection = 0;
+
     }
 
     private void OnDisable()
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+
     }
 
     private void SetMoveDirection(Vector2 value)
@@ -62,6 +64,10 @@ public class PlayerController : MonoBehaviour
         playerRB.drag = GameManager.Instance.playerDrag;
         moveForceMagnitude = GameManager.Instance.playerMoveForce;
         focalpoint = GameObject.Find("Focal Point").transform;
+        if (GameManager.Instance.debugPowerUpRepel)
+        {
+            hasPowerUp = true;
+        }
     }
 
     private void Move()

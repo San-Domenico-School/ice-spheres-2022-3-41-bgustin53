@@ -19,9 +19,12 @@ public class IceSphereController : MonoBehaviour
         {
             reductionEachRepeat = .5f;
         }
+        else
+        {
+            reductionEachRepeat = 0.975f;
+        }
 
         startDelay = 3;
-        reductionEachRepeat = 0.975f;
         minimumVolume = 0.2f;
 
         iceRB = GetComponent<Rigidbody>();
@@ -42,12 +45,11 @@ public class IceSphereController : MonoBehaviour
     private void Dissolution()
     {
         float volume = 4 / 3 * Mathf.PI * Mathf.Pow(transform.localScale.x, 2);
-        if(volume < minimumVolume  && FindObjectsOfType<IceSphereController>().Length > 1)
+        if (volume < minimumVolume)
         {
             iceVFX.Stop();
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
-
     }
 
     private void Melt()
