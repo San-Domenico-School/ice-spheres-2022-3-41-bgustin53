@@ -49,12 +49,11 @@ public class SpawnManager : MonoBehaviour
         // Initializes waveNumber as dictated by the GDD
         waveNumber = initialWave;
 
-        /* Used for debugging.  Keeps portal on for 99 second so it is easy to enter a portal
-        if (GameManager.Instance.debugTransport)
+        // Used for debugging.  Keeps portal on for 99 second so it is easy to enter a portal
+        if (GameManager.Instance.debugSpawnPortal)
         {
             portalByWaveDuration = 99;
         }
-        */
     }
 
     // Update is called once per frame
@@ -67,13 +66,13 @@ public class SpawnManager : MonoBehaviour
             SpawnIceWave();
         }
 
-        /* Makes sure that the postal does not appear until what is stated in the GDD and only if one is not already present
+        // Makes sure that the postal does not appear until what is stated in the GDD and only if one is not already present
         if ((waveNumber > portalFirstAppearance || GameManager.Instance.debugSpawnPortal) && !portalActive)
         {
             SetObjectActive(portal, portalByWaveProbability);
         }
 
-        // Makes sure that the powerUp does not appear until what is stated in the GDD and only if one is not already present
+        /* Makes sure that the powerUp does not appear until what is stated in the GDD and only if one is not already present
         if ((waveNumber > powerUpFirstAppearance || GameManager.Instance.debugSpawnPowerUp)
              && !powerUpActive)
         {
@@ -96,7 +95,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    /* Calls the spawn routine 
+    // Calls the spawn routine 
     private void SetObjectActive(GameObject obj, float byWaveProbability)
     {
         if (Random.value < waveNumber * byWaveProbability * Time.deltaTime ||
@@ -106,7 +105,7 @@ public class SpawnManager : MonoBehaviour
             StartCoroutine(CountdownTimer(obj.tag));
         }
     }
-    */
+    
 
     // Called from SetObjectActive to return a viable position vector.  posY parameter makes sure
     // that each object is at the proper y-position.
@@ -117,7 +116,7 @@ public class SpawnManager : MonoBehaviour
         return new Vector3(posX, posY, posZ);
     }
 
-    /* Sets the object spawned active, waits, the set it inactive.
+    // Sets the object spawned active, waits, the set it inactive.
     IEnumerator CountdownTimer(string objectTag)
     {
         float byWaveDuration = 0;
@@ -149,5 +148,5 @@ public class SpawnManager : MonoBehaviour
                 powerUpActive = false;
                 break;
         }
-    }*/
+    }
 }

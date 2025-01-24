@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        if(transform.position.y < -10)
+        {
+            GameManager.Instance.gameOver = true;
+        }
 
     }
 
@@ -64,10 +68,6 @@ public class PlayerController : MonoBehaviour
         playerRB.drag = GameManager.Instance.playerDrag;
         moveForceMagnitude = GameManager.Instance.playerMoveForce;
         focalpoint = GameObject.Find("Focal Point").transform;
-        if (GameManager.Instance.debugPowerUpRepel)
-        {
-            hasPowerUp = true;
-        }
     }
 
     private void Move()
@@ -76,6 +76,8 @@ public class PlayerController : MonoBehaviour
         {
             playerRB.AddForce(focalpoint.forward.normalized * moveDirection * moveForceMagnitude);
         }
+
+        hasPowerUp = GameManager.Instance.debugPowerUpRepel;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -87,8 +89,26 @@ public class PlayerController : MonoBehaviour
             AssignLevelValues();
         }
     }
-    private void OnTriggerEnter(Collider other) { }
-    private void OnTriggerExit(Collider other) { }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Portal"))
+        {
+            gameObject.layer = LayerMask.NameToLayer("Portal");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Portal"))
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+            if(transform.position.y < 0)
+            {
+                transform.position = Vector3.up * 25;
+                GameManager.Instance.switchLevels = true;
+            }
+        }
+    }
     private IEnumerator PowerUpCooldown(float cooldown)
     {
         yield return new WaitForSeconds(cooldown);
