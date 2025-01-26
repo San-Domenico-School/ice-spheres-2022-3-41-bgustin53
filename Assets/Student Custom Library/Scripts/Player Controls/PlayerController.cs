@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRB;
     private SphereCollider playerCollider;
     private Light powerUpIndicator;
-    private PlayerInputActions inputAction;
     private Transform focalpoint;
     private float moveForceMagnitude;
     private float moveDirection;
@@ -17,10 +17,7 @@ public class PlayerController : MonoBehaviour
     public bool hasPowerUp { get; private set; }
 
     // Methods
-    private void Awake()
-    {
-        inputAction = new PlayerInputActions();
-    }
+   
         
     private void Start()
     {
@@ -33,25 +30,15 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void OnEnable()
-    {
-        inputAction.Enable();
-        inputAction.Player.Movement.performed += ctx => SetMoveDirection(ctx.ReadValue<Vector2>());
-        inputAction.Player.Movement.canceled += ctx => moveDirection = 0;
-
-    }
-
-    private void OnDisable()
-    {
-        inputAction.Disable();
-    }
+    public void OnInputAction(InputAction.CallbackContext ctx) => SetMoveDirection(ctx.ReadValue<Vector2>());
 
     private void FixedUpdate()
     {
         Move();
         if(transform.position.y < -10)
         {
-            GameManager.Instance.gameOver = true;
+            transform.position = Vector3.up * 25;
+            LevelManager.Instance.SwitchLevels("Level1");
         }
 
     }
@@ -84,7 +71,7 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Startup"))
         {
-            collision.gameObject.tag = "Ground";
+            //collision.gameObject.tag = "Ground";
             playerCollider.material.bounciness = GameManager.Instance.playerBounce;
             AssignLevelValues();
         }
@@ -102,10 +89,11 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Portal"))
         {
             gameObject.layer = LayerMask.NameToLayer("Player");
-            if(transform.position.y < 0)
+            if(transform.position.y < 1)
             {
                 transform.position = Vector3.up * 25;
-                GameManager.Instance.switchLevels = true;
+                string destination = other.gameObject.GetComponent<PortalController>().GetDestination();
+                LevelManager.Instance.SwitchLevels(destination);
             }
         }
     }

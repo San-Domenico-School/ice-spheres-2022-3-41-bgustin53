@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,7 +24,6 @@ public class GameManager : MonoBehaviour
     public bool debugPowerUpRepel;
 
     // Properties
-    public bool switchLevels { get; set; }
     public bool gameOver { get; set; }
     public bool playerHasPowerUp { get; set; }
 
@@ -51,40 +49,8 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if(switchLevels)
-        {
-            SwitchLevels();
-        }
-    }
 
     private void EnablePlayer() { }
 
-    private void SwitchLevels()
-    {
-        // Stops class from calling this method again
-        switchLevels = false;
-
-        // Get the name of the currently active scene
-        string currentScene = SceneManager.GetActiveScene().name;
-
-        // Extract the level number from the scene name
-        int nextLevel = int.Parse(currentScene.Substring(5)) + 1;
-
-        // Checks to see if you're at the last level
-        if (nextLevel <= SceneManager.sceneCountInBuildSettings)
-        {
-            // Load the next scene
-            SceneManager.LoadScene("Level" + nextLevel.ToString());
-
-        }
-        //If you are at the last level, ends the game.
-        //*****   More will go here after Prototype  ***** //
-        else
-        {
-            gameOver = true;
-            Debug.Log("You won");
-        }
-    }
+   
 }
