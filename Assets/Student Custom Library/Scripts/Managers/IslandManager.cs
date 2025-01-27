@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class LevelManager : MonoBehaviour
+public class IslandManager : MonoBehaviour
 {
-    public static LevelManager Instance;
+    public static IslandManager Instance;
 
     private void Awake()
     {

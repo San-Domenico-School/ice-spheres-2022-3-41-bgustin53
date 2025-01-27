@@ -30,6 +30,16 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        this.gameObject.name = "Player";
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
     public void OnInputAction(InputAction.CallbackContext ctx) => SetMoveDirection(ctx.ReadValue<Vector2>());
 
     private void FixedUpdate()
@@ -38,7 +48,7 @@ public class PlayerController : MonoBehaviour
         if(transform.position.y < -10)
         {
             transform.position = Vector3.up * 25;
-            LevelManager.Instance.SwitchLevels("Level1");
+            IslandManager.Instance.SwitchLevels("Level1");
         }
 
     }
@@ -93,7 +103,7 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = Vector3.up * 25;
                 string destination = other.gameObject.GetComponent<PortalController>().GetDestination();
-                LevelManager.Instance.SwitchLevels(destination);
+                IslandManager.Instance.SwitchLevels(destination);
             }
         }
     }
