@@ -727,7 +727,7 @@ GameObject:
   - component: {fileID: 672233166}
   - component: {fileID: 672233165}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: IslandManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: e7cbfe563135043459b7043985559a47, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 681aa29491b3c4c4ab267c3480355fa7, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1867726501
 GameObject:
@@ -1273,7 +1273,7 @@ MonoBehaviour:
   debugSpawnWaves: 0
   debugSpawnPortal: 1
   debugSpawnPowerUp: 0
-  debugPowerUpRepel: 1
+  debugPowerUpRepel: 0
 --- !u!1 &2108052279
 GameObject:
   m_ObjectHideFlags: 0
