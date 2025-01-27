@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Portal"))
         {
             gameObject.layer = LayerMask.NameToLayer("Player");
-            if(transform.position.y < 1)
+            if(transform.position.y < 0)
             {
                 transform.position = Vector3.up * 25;
                 string destination = other.gameObject.GetComponent<PortalController>().GetDestination();

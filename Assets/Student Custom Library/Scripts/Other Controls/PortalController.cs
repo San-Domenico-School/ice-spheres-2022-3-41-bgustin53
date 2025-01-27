@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PortalController : MonoBehaviour
 {
-    private const string DESTINATION = "Level2";
+    [SerializeField] private string destination;
 
     public string GetDestination()
     {
-        return DESTINATION;
+        return destination;
     }    
 }
